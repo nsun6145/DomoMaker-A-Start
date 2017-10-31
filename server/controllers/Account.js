@@ -47,7 +47,7 @@ const signup = (request, response) => {
     return res.status(400).json({ error: 'ALL FIELDS REQUIRED' });
   }
 
-  if (!req.body.pass !== req.body.pass2) {
+  if (req.body.pass !== req.body.pass2) {
     return res.status(400).json({ error: 'PASSWORDS DO NOT MATCH' });
   }
 
