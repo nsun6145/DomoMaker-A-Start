@@ -44,6 +44,9 @@ app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));
 app.disable('x-powered-by');
 app.use(cookieParser());
 
+// csrf must come AFTER app.use(cookieParser());
+// and app.use(session);
+// come before couter
 app.use(csrf());
 app.use((err, req, res, next) => {
   if (err.code !== 'EBADCSRFTOKEN') return next(err);
@@ -70,7 +73,6 @@ app.use(session({
 app.engine('handlebars', expressHandlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/../views`);
-app.use(cookieParser());
 
 router(app);
 
