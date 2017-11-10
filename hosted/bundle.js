@@ -23,7 +23,7 @@ var DomoForm = function DomoForm(props) {
     { id: "domoForm",
       onSubmit: handleDomo,
       name: "domoForm",
-      action: "/make",
+      action: "/maker",
       method: "POST",
       className: "domoForm"
     },

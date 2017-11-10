@@ -1,4 +1,4 @@
-const handleDomo = (e) =>{
+const handleDomo = (e) => {
   e.preventDefault();
   
   $("#domoMessage").animate({width:'hide'}, 350);
