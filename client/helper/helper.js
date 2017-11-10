@@ -1,4 +1,4 @@
-const handleError(message)=>{
+const handleError = (message)=>{
   $("#errorMessage").text(message);
   $("#domoMessage").animate({width:'toggle'},350);
 };
@@ -18,7 +18,7 @@ const sendAjax = (type,action,data,success) =>{
     success: success,
     error: function(xhr,status,error){
       var messageObj = JSON.parse(xhr.responseText);
-      handleError(messageObj.error)''
+      handleError(messageObj.error);
     }
   });
 };

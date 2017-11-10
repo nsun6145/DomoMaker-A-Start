@@ -16,7 +16,7 @@ const handleDomo = (e) =>{
   return false;
 };
            
-const DomoForm = (props) = {
+const DomoForm = (props) => {
     return (
     <form id="domoForm"
      onSubmit={handleDomo}
