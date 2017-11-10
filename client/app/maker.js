@@ -21,7 +21,7 @@ const DomoForm = (props) => {
     <form id="domoForm"
      onSubmit={handleDomo}
       name="domoForm"
-      action="/make"
+      action="/maker"
       method="POST"
       className="domoForm"
      >
@@ -65,7 +65,7 @@ const DomoList = function(props){
 const loadDomosFromServer = () => {
   sendAjax('GET', '/getDomos', null, (data) =>{
    ReactDOM.render(
-     <DomoList domos={data.domos}/>, document.querySelector("#domos")
+     <DomoList domos={data.domos} />, document.querySelector("#domos")
    ); 
   });
 };
@@ -82,7 +82,7 @@ const setup = function(crsf){
 };
 
 const getToken = () =>{
-   sendAjax('GET', '/getToken', null, (result) =>{
+   sendAjax('GET', '/getToken', null, (result) => {
      setup(result.csrfToken);
    });
 };
