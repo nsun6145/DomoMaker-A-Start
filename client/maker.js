@@ -25,9 +25,10 @@ const DomoForm = (props) = {
       method="POST"
       className="domoForm"
      >
+    
       <label htmlFor= "name">Name: </label>
       <input id="domoName" type="text" name="name" placeholder="Domo Name"/>
-      <label> htmlFor="age" Age: </label>
+      <label htmlFor="age"> Age: </label>
       <input id="domoAge" type= "text" anme="age" placeholder="Domo Age"/>
       <input type="hidden" name="_csrf" value={props.csrf}/>
       <input className="makeDomoSubmit" type="submit" value="Make Domo" />
@@ -35,8 +36,7 @@ const DomoForm = (props) = {
     );
   };
 
-const DomoList = function(props){
-  
+const DomoList = function(props){ 
   if(props.domos.length === 0){
     return(
       <div className= "domoList">
@@ -62,7 +62,7 @@ const DomoList = function(props){
   );
 };
 
-const loadDomosFromServer = () =>{
+const loadDomosFromServer = () => {
   sendAjax('GET', '/getDomos', null, (data) =>{
    ReactDOM.render(
      <DomoList domos={data.domos}/>, document.querySelector("#domos")

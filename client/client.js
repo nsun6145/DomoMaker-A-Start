@@ -20,13 +20,13 @@ const handleSignup = (e) =>{
   
   $("#domoMessage").animate({width:'hide'},350);
   
-  if($("user").val() == '' || $("#pass").val() == '' || $("#pass").val()==''){
+  if($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val()==''){
      handleError("RAWR! All fields are required.");
     return false;
   }
   
   if($("#pass").val() !== $("#pass2").val()){
-      handleError("RAWR! Passwords do not match.");
+    handleError("RAWR! Passwords do not match.");
     return false;
   }
   
@@ -60,7 +60,8 @@ const LoginWindow = (props)=>{
           onSubmit={handleSignup}
           action="/signup"
           method="POST"
-          className="mainForm">
+          className="mainForm"
+        >
         <label htmlFor="username">Username: </label>
       <input id="user" type="text" name = "username" placeholder="username"/>
       <label htmlFor="pass">Password: </label>
@@ -107,11 +108,8 @@ const setup = (csrf) => {
 };
            
 const getToken=()=>{
-
   sendAjax('GET', '/getToken' ,null,(result) =>{
-   
     setup(result.csrfToken);
-    
   });
 
 };
