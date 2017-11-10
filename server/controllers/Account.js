@@ -6,9 +6,11 @@ const loginPage = (req, res) => {
   res.render('login', { csrfToken: req.csrfToken() });
 };
 
+/*
 const signupPage = (req, res) => {
   res.render('signup', { csrfToken: req.csrfToken() });
 };
+*/
 
 const logout = (req, res) => {
   req.session.destroy();
@@ -27,7 +29,7 @@ const login = (request, response) => {
   }
 
   return Account.AccountModel.authenticate(username, password, (err, account) => {
-    if (err | !account) {
+    if (err || !account) {
       return res.status(401).json({ error: 'Wrong username or password' });
     }
     req.session.account = Account.AccountModel.toAPI(account);
@@ -80,8 +82,19 @@ const signup = (request, response) => {
   });
 };
 
+const getToken = (request, response) => {
+  const req = request;
+  const res = response;
+
+  const csrfJSON = {
+    csrfToken: req.csrfToken(),
+  };
+  res.json(csrfJSON);
+};
+
 module.exports.loginPage = loginPage;
 module.exports.login = login;
 module.exports.logout = logout;
-module.exports.signupPage = signupPage;
+// module.exports.signupPage = signupPage;
 module.exports.signup = signup;
+module.exports.getToken = getToken;
