@@ -90,6 +90,15 @@ nav:nth-child(1) {
     background-color: #338acc;
 }
 
+.domoDelete:link, .domoDelete:visited, .domoDelete:hover, .domoDelete:active{
+  color: white;
+}
+
+.domoDelete:hover{
+    transition: background-color 0.2s ease;
+    background-color: #b73f33;
+}
+
 .mainForm {
     height: 300px;
     width: 350px;

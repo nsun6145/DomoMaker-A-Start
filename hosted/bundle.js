@@ -5,7 +5,7 @@ var handleDomo = function handleDomo(e) {
 
   $("#domoMessage").animate({ width: 'hide' }, 350);
 
-  if ($("#domoName").val() == '' || $("#domoAge").val() == '') {
+  if ($("#domoName").val() == '' || $("#domoAge").val() == '' || $("#domoLevel").val() == '') {
     handleError("RAWR! All fields are required");
     return false;
   }
@@ -39,6 +39,12 @@ var DomoForm = function DomoForm(props) {
       " Age: "
     ),
     React.createElement("input", { id: "domoAge", type: "text", name: "age", placeholder: "Domo Age" }),
+    React.createElement(
+      "label",
+      { htmlFor: "level" },
+      " Level: "
+    ),
+    React.createElement("input", { id: "domoLevel", type: "text", name: "level", placeholder: "Domo Level" }),
     React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
     React.createElement("input", { className: "makeDomoSubmit", type: "submit", value: "Make Domo" })
   );
@@ -57,7 +63,12 @@ var DomoList = function DomoList(props) {
     );
   }
 
+  var domoText = '';
+  var domoDummy = void 0;
   var domoNodes = props.domos.map(function (domo) {
+    domoDummy = domo;
+    domoText += "Name: " + domo.name + " Age: " + domo.age + " Level: " + domo.level + " \n";
+
     return React.createElement(
       "div",
       { key: domo._id, className: "domo" },
@@ -73,15 +84,34 @@ var DomoList = function DomoList(props) {
         { className: "domoAge" },
         " Age: ",
         domo.age
-      )
+      ),
+      React.createElement(
+        "h3",
+        { className: "domoLevel" },
+        " Level: ",
+        domo.level
+      ),
+      React.createElement("input", { className: "domoDelete", type: "submit", value: "Delete" })
     );
   });
+
+  console.log(domoText);
 
   return React.createElement(
     "div",
     { className: "domoList" },
-    domoNodes
+    domoNodes,
+    React.createElement(
+      "textarea",
+      { rows: "10", cols: "50", id: "export" },
+      domoText
+    )
   );
+
+  if (document && document.getElementById('export')) {
+    console.log("check");
+    document.getElementById('export').innerHTML += "Name: " + domo.name + " \n        Age: " + domo.age + " \n        Level: " + domo.level + " \n";
+  }
 };
 
 var loadDomosFromServer = function loadDomosFromServer() {
